@@ -1,10 +1,8 @@
-import{combineReducers} from 'redux'
-import islogged from './islogged';
-
-
+import { combineReducers } from "redux";
+import islogged from "./islogged";
 
 const rootreducers = combineReducers({
-    log : islogged
-})
+  log: islogged,
+});
 
 export default rootreducers;
