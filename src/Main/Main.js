@@ -11,16 +11,15 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import VpnKeyTwoToneIcon from "@material-ui/icons/VpnKeyTwoTone";
 import { makeStyles } from "@material-ui/core/styles";
+import VpnKeyTwoToneIcon from "@material-ui/icons/VpnKeyTwoTone";
+import Avatar from "@material-ui/core/Avatar";
+// data
+import {data} from './../data';
 // images
 import lap from "./../images/lap.jpg";
-import logan from "./../images/logan.jpg";
-import father from "./../images/father.jpg";
-import phantom from "./../images/phantom.jpg";
+
 import avatar from "./../images/avatar.png";
-import greenbook from "./../images/greenbook.jpg";
 // components
 import MyPagination from "./Pagination";
 import Cardmovie from "./../Components/Cardmovie";
@@ -71,29 +70,8 @@ const Main = () => {
   const logged = useSelector((state) => state.log);
   const classes = usestyle();
 
-  const [carddata, setcarddata] = useState([
-    {
-      image: logan,
-      title: "Logan",
-      des: "یک فیلم ابرقهرمانی آمریکایی محصول سال ۲۰۱۷ به نویسندگی و کارگردانی جیمز منگولد است که بر اساس شخصیت ولورین از شرکت مارول کامیکس با هنرپیشگی هیو جکمن ساخته شده‌است.",
-    },
-    {
-      image: greenbook,
-      title: "Greenbook",
-      des: ` فیلمی در ژانر کمدی-درام به کارگردانی پیتر فارلی است که در سال ۲۰۱۸ منتشر شد.
-      فیلم نقدهای مثبتی دریافت کرده که در آن‌ها بازی علی و مورتنسن مورد ستایش قرار گرفته‌اند.`,
-    },
-    {
-      image: phantom,
-      title: "Phantom Thread",
-      des: "فیلمی آمریکایی در سبک درام-تاریخی به کارگردانی و نویسندگی پل توماس اندرسن است که موضوع آن به مد لباس در لندن دهه ۱۹۵۰ برمی‌گردد.",
-    },
-    {
-      image: father,
-      title: "Father",
-      des: " یک فیلم سینمایی درام محصول مشترک فرانسه و انگلستان تولید سال ۲۰۲۰ به نویسندگی و کارگردانی فلوریان زلر است و بر اساس نمایشنامه سال ۲۰۱۲ خود به نام پدر ساخته شده‌است.",
-    },
-  ]);
+  const [carddata] = useState(data)
+    
 
   const Login = () => {
     const style = {
@@ -129,6 +107,7 @@ const Main = () => {
               <Link
                 to="/login"
                 style={{
+                  width:'190px',
                   fontWeight: 600,
                   fontSize: 20,
                   textDecoration: "none",
@@ -137,6 +116,10 @@ const Main = () => {
                   height: "100%",
                   cursor: "pointer",
                   paddingBottom: 9,
+                  display:'flex',
+                  alignItems:'center',
+                  marginLeft:'10px',
+                  justifyContent:'space-around'
                 }}
               >
                 {" "}

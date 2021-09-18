@@ -38,8 +38,10 @@ const useStyles = makeStyles((theme) => {
       width: drawerWidth,
     },
     active: {
-      background: "#f4f4f4",
-      fontSize: 55,
+      // background: "#f4f4f4",
+      marginTop:'10px',
+      marginBottom:'10px',
+      background: "lightgray",
     },
     title: {
       padding: theme.spacing(2),
@@ -49,12 +51,23 @@ const useStyles = makeStyles((theme) => {
       marginLeft: drawerWidth,
       backgroundColor: "#b2b1b1",
     },
+    link:{
+      display:'flex',
+      justifyContent:'flex-start',
+      background:'white',
+      marginTop:'10px',
+      marginBottom:'10px',
+      '&:hover':{ background:'lightgray'}
+    },
     date: {
       flexGrow: 1,
     },
     toolbar: theme.mixins.toolbar,
     text: {
       fontSize: 19,
+      display:'flex',
+      justifyContent:'end',
+      marginRight:'5px'
     },
   };
 });
@@ -63,6 +76,7 @@ export default function Layout({ children }) {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
+  console.log(location.pathname.substring(1))
 
   const menuItems = [
     {
@@ -90,9 +104,7 @@ export default function Layout({ children }) {
           <Typography variant="h3">
             <Avatar alt="Remy Sharp" src={avatar} className={classes.large} />
 
-            {/* Today is the {format(new Date(), 'do MMMM Y')} */}
           </Typography>
-          {/* <Typography>Mario</Typography> */}
         </Toolbar>
       </AppBar>
 
@@ -116,7 +128,7 @@ export default function Layout({ children }) {
               button
               key={item.text}
               onClick={() => history.push(item.path)}
-              className={location.pathname == item.path ? classes.active : null}
+              className={location.pathname.substring(1) === item.path.substring(1) ? classes.active : classes.link}
             >
               <ListItemText className={classes.text} primary={item.text} />
               <ListItemIcon>{item.icon}</ListItemIcon>

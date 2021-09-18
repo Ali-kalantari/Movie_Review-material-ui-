@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useSelector} from 'react-redux'
 //material ui
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -38,6 +38,10 @@ const useStyles = makeStyles({
     float: "right",
     color: "gray",
   },
+  notlogin:{
+    textAlign:'center',
+    marginTop:'50px'
+  },
   upload: {
     float: "right",
     display: "iline",
@@ -56,7 +60,8 @@ const useStyles = makeStyles({
 
 const Article = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const logged = useSelector((state) => state.log);
+  
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [titleError, setTitleError] = useState(false);
@@ -84,114 +89,120 @@ const Article = () => {
   };
   return (
     <>
-      <Layout />
-      <Container className={classes.container}>
-        <Typography
-          variant="h6"
-          color="textSecondary"
-          component="h1"
-          gutterBottom
-          className={classes.title}
-        >
-          نوشتن مقاله جدید
-        </Typography>
-
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-          <Typography className={classes.aa} variant="h6">
-            {" "}
-            :نام فیلم
-          </Typography>
-          <TextField
-            className={classes.field}
-            onChange={(e) => setTitle(e.target.value)}
-            label=""
-            variant="outlined"
-            color="secondary"
-            fullWidth
-            required
-            error={titleError}
-          />
-          <Typography className={classes.aa} variant="h6">
-            {" "}
-            :نقد فیلم
-          </Typography>
-
-          <TextField
-            className={classes.field}
-            onChange={(e) => setDetails(e.target.value)}
-            label=""
-            variant="outlined"
-            color="secondary"
-            multiline
-            rows={4}
-            fullWidth
-            required
-            error={detailsError}
-          />
-
-          <label htmlFor="upload-photo">
-            <input
-              style={{ display: "none" }}
-              id="upload-photo"
-              name="upload-photo"
-              type="file"
-            />
-
-            <Fab
-              color="secondary"
-              size="small"
-              component="span"
-              aria-label="add"
-              variant="extended"
-              className={classes.upload}
-            >
-              <AddIcon /> آپلود عکس
-            </Fab>
-
-            {/* <Fab color="primary" size="small" component="span" aria-label="add">
-    <AddIcon />
-  </Fab> */}
-          </label>
-
-          <br />
-          <br />
-          <br />
-          <br />
-
-          {/* <Radio value="hello" />
-              <Radio value="goodbye" /> */}
-
-          {/* <FormControl className={classes.field}>
-                <FormLabel>Note Category</FormLabel>
-                <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
-                  <FormControlLabel value="money" control={<Radio />} label="Money" />
-                  <FormControlLabel value="todos" control={<Radio />} label="Todos" />
-                  <FormControlLabel value="reminders" control={<Radio />} label="Reminders" />
-                  <FormControlLabel value="work" control={<Radio />} label="Work" />
-                </RadioGroup>
-              </FormControl>
-       */}
-          <Button
-            className={classes.button}
-            type="submit"
-            color="secondary"
-            variant="contained"
-            startIcon={<KeyboardArrowLeftIcon />}
+      {
+        logged ? <><Layout />
+        <Container className={classes.container}>
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="h1"
+            gutterBottom
+            className={classes.title}
           >
-            ثبت
-          </Button>
-        </form>
-
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <br />
-        <br />
-        <br />
-        <br />
-      </Container>
+            نوشتن مقاله جدید
+          </Typography>
+  
+          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <Typography className={classes.aa} variant="h6">
+              {" "}
+              :نام فیلم
+            </Typography>
+            <TextField
+              className={classes.field}
+              onChange={(e) => setTitle(e.target.value)}
+              label=""
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              required
+              error={titleError}
+            />
+            <Typography className={classes.aa} variant="h6">
+              {" "}
+              :نقد فیلم
+            </Typography>
+  
+            <TextField
+              className={classes.field}
+              onChange={(e) => setDetails(e.target.value)}
+              label=""
+              variant="outlined"
+              color="secondary"
+              multiline
+              rows={4}
+              fullWidth
+              required
+              error={detailsError}
+            />
+  
+            <label htmlFor="upload-photo">
+              <input
+                style={{ display: "none" }}
+                id="upload-photo"
+                name="upload-photo"
+                type="file"
+              />
+  
+              <Fab
+                color="secondary"
+                size="small"
+                component="span"
+                aria-label="add"
+                variant="extended"
+                className={classes.upload}
+              >
+                <AddIcon /> آپلود عکس
+              </Fab>
+  
+              {/* <Fab color="primary" size="small" component="span" aria-label="add">
+      <AddIcon />
+    </Fab> */}
+            </label>
+  
+            <br />
+            <br />
+            <br />
+            <br />
+  
+            {/* <Radio value="hello" />
+                <Radio value="goodbye" /> */}
+  
+            {/* <FormControl className={classes.field}>
+                  <FormLabel>Note Category</FormLabel>
+                  <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <FormControlLabel value="money" control={<Radio />} label="Money" />
+                    <FormControlLabel value="todos" control={<Radio />} label="Todos" />
+                    <FormControlLabel value="reminders" control={<Radio />} label="Reminders" />
+                    <FormControlLabel value="work" control={<Radio />} label="Work" />
+                  </RadioGroup>
+                </FormControl>
+         */}
+            <Button
+              className={classes.button}
+              type="submit"
+              color="secondary"
+              variant="contained"
+              startIcon={<KeyboardArrowLeftIcon />}
+            >
+              ثبت
+            </Button>
+          </form>
+  
+          <br />
+          <br />
+          <br />
+          <br />
+  
+          <br />
+          <br />
+          <br />
+          <br />
+        </Container></> :
+        <>
+        <Typography className={classes.notlogin} variant='h3'>برای دسترسی به این صفحه</Typography>
+        <Typography className={classes.notlogin} variant='h3'>شما باید وارد حساب کاربری خود شود</Typography>
+        </>
+      }
     </>
   );
 };

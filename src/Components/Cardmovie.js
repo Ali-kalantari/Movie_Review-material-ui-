@@ -51,7 +51,7 @@ const Cardmovie = (props) => {
               component="p"
               className={classes.des}
             >
-              {props.des}
+              {props.des.slice(0,170)}...
             </Typography>
           </CardContent>
         </CardActionArea>

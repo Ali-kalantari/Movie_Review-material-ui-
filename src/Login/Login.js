@@ -145,6 +145,10 @@ export default function SignIn() {
   const logged = useSelector((state) => state.log);
   const dispatch = useDispatch();
   const history = useHistory();
+  setTimeout(() => {
+    alert("enter 'admin' as username and password")
+    
+  }, 1000);
 
   const Form = () => {
     const [user, setuser] = useState("");
