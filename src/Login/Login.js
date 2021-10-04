@@ -98,6 +98,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {sign} from './../actions/sign_in'
 // material
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -154,11 +155,11 @@ export default function SignIn() {
     const [user, setuser] = useState("");
     const [pass, setpass] = useState("");
 
-    const sign = () => {
-      return {
-        type: "SIGN_IN",
-      };
-    };
+    // const sign = () => {
+    //   return {
+    //     type: "SIGN_IN",
+    //   };
+    // };
 
     const submit = () => {
       if (user === "admin" && pass === "admin") {

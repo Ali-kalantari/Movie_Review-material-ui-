@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './../App.css'
 // redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { dark } from "./../actions/darkmode";
 // material components
 import {
   AppBar,
@@ -11,11 +13,12 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import Switch from "@material-ui/core/Switch";
 import { makeStyles } from "@material-ui/core/styles";
 import VpnKeyTwoToneIcon from "@material-ui/icons/VpnKeyTwoTone";
 import Avatar from "@material-ui/core/Avatar";
 // data
-import {data} from './../data';
+import { data } from "./../data";
 // images
 import lap from "./../images/lap.jpg";
 
@@ -26,6 +29,9 @@ import Cardmovie from "./../Components/Cardmovie";
 
 const usestyle = makeStyles((theme) => ({
   appbar: {
+    background: "black",
+  },
+  appbar1: {
     background: "#fff",
   },
   span: {
@@ -51,9 +57,14 @@ const usestyle = makeStyles((theme) => ({
       fontSize: "3em",
     },
   },
+  title:{
+    color:'white'
+  },
   blogcontainer: {
     paddingTop: theme.spacing(3),
+    
   },
+
   blogtitle: {
     paddingBottom: theme.spacing(3),
     textAlign: "center",
@@ -68,10 +79,17 @@ const usestyle = makeStyles((theme) => ({
 
 const Main = () => {
   const logged = useSelector((state) => state.log);
+  const darkmode = useSelector((state) => state.darkmode);
+  const dispatch = useDispatch();
   const classes = usestyle();
 
-  const [carddata] = useState(data)
-    
+  const [carddata] = useState(data);
+  const [checked] = useState();
+
+  const handledarkmode = (e) => {
+    dispatch(dark());
+    // console.log(e.target.checked)
+  };
 
   const Login = () => {
     const style = {
@@ -92,22 +110,29 @@ const Main = () => {
 
   return (
     <>
-      <div>
-        <AppBar className={classes.appbar} position="static">
+      <div className={darkmode ? 'main dark' : 'main light'}>
+        <AppBar
+          className={darkmode ? classes.appbar : classes.appbar1}
+          position="static"
+        >
           <Toolbar style={{ justifyContent: "space-between" }}>
-            <Typography variant="h5">
+            <Typography className={darkmode ? classes.title : null} variant="h5">
               AL
               <Typography variant="h5" className={classes.span}>
                 i
               </Typography>
             </Typography>
+            <div>
+              <Switch checked={checked} onChange={handledarkmode} />
+              dark mode
+            </div>
             {logged === true ? (
               <Login />
             ) : (
               <Link
                 to="/login"
                 style={{
-                  width:'190px',
+                  width: "190px",
                   fontWeight: 600,
                   fontSize: 20,
                   textDecoration: "none",
@@ -116,10 +141,10 @@ const Main = () => {
                   height: "100%",
                   cursor: "pointer",
                   paddingBottom: 9,
-                  display:'flex',
-                  alignItems:'center',
-                  marginLeft:'10px',
-                  justifyContent:'space-around'
+                  display: "flex",
+                  alignItems: "center",
+                  marginLeft: "10px",
+                  justifyContent: "space-around",
                 }}
               >
                 {" "}
