@@ -1,17 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+// Redux
 import { createStore } from "redux";
+// import thunk from 'redux-thunk';
+import rootreducers from "./reducers/indexreducers";
 import { Provider } from "react-redux";
+// material
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme/theme";
-import rootreducers from "./reducers/indexreducers";
+import reportWebVitals from "./reportWebVitals";
 
 const store = createStore(
   rootreducers,
+  // applyMiddleware(thunk),
+
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
 
 ReactDOM.render(
   <Provider store={store}>

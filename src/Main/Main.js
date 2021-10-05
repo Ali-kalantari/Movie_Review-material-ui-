@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './../App.css'
+import "./../App.css";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { dark } from "./../actions/darkmode";
@@ -57,12 +57,11 @@ const usestyle = makeStyles((theme) => ({
       fontSize: "3em",
     },
   },
-  title:{
-    color:'white'
+  title: {
+    color: "white",
   },
   blogcontainer: {
     paddingTop: theme.spacing(3),
-    
   },
 
   blogtitle: {
@@ -88,7 +87,7 @@ const Main = () => {
 
   const handledarkmode = (e) => {
     dispatch(dark());
-    // console.log(e.target.checked)
+    console.log(e.target.checked);
   };
 
   const Login = () => {
@@ -110,13 +109,16 @@ const Main = () => {
 
   return (
     <>
-      <div className={darkmode ? 'main dark' : 'main light'}>
+      <div className={darkmode ? "main dark" : "main light"}>
         <AppBar
           className={darkmode ? classes.appbar : classes.appbar1}
           position="static"
         >
           <Toolbar style={{ justifyContent: "space-between" }}>
-            <Typography className={darkmode ? classes.title : null} variant="h5">
+            <Typography
+              className={darkmode ? classes.title : null}
+              variant="h5"
+            >
               AL
               <Typography variant="h5" className={classes.span}>
                 i
@@ -164,7 +166,7 @@ const Main = () => {
           <Grid container spacing={3}>
             {carddata.map((item, index) => {
               return (
-                <Grid item md={4} sm={6} xs={12}>
+                <Grid key={index} item md={4} sm={6} xs={12}>
                   <Cardmovie
                     image={item.image}
                     title={item.title}

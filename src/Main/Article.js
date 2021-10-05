@@ -66,12 +66,13 @@ const Article = () => {
   const [details, setDetails] = useState("");
   const [titleError, setTitleError] = useState(false);
   const [detailsError, setDetailsError] = useState(false);
-  const [category, setCategory] = useState("money");
+  const [category] = useState("money");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false);
     setDetailsError(false);
+    console.log(title,details,category)
 
     // if (title == '') {
     //   setTitleError(true)

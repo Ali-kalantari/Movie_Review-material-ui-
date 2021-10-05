@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import islogged from "./islogged";
-import isdarkmode from './isdarkmode'
+import isdarkmode from './isdarkmode';
+// import FetchUsers from "./fetch";
 
 const rootreducers = combineReducers({
   log: islogged,
-  darkmode:isdarkmode
+  darkmode:isdarkmode,
+  // users:FetchUsers
 
 });
 

@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => {
     drawerPaper: {
       width: drawerWidth,
     },
-    active: {
-      // background: "#f4f4f4",
-      marginTop:'10px',
-      marginBottom:'10px',
-      background: "lightgray",
-    },
     title: {
       padding: theme.spacing(2),
     },
@@ -51,13 +45,20 @@ const useStyles = makeStyles((theme) => {
       marginLeft: drawerWidth,
       backgroundColor: "#b2b1b1",
     },
-    link:{
-      display:'flex',
-      justifyContent:'flex-start',
-      background:'white',
-      marginTop:'10px',
-      marginBottom:'10px',
-      '&:hover':{ background:'lightgray'}
+    active: {
+      // background: "#f4f4f4",
+      marginTop: "10px",
+      marginBottom: "10px",
+      background: "darkgray",
+      "&:hover": { background: "gray" }
+    },
+    link: {
+      display: "flex",
+      justifyContent: "flex-start",
+      background: "white",
+      marginTop: "10px",
+      marginBottom: "10px",
+      "&:hover": { background: "gray" },
     },
     date: {
       flexGrow: 1,
@@ -65,9 +66,9 @@ const useStyles = makeStyles((theme) => {
     toolbar: theme.mixins.toolbar,
     text: {
       fontSize: 19,
-      display:'flex',
-      justifyContent:'end',
-      marginRight:'5px'
+      display: "flex",
+      justifyContent: "end",
+      marginRight: "5px",
     },
   };
 });
@@ -76,7 +77,7 @@ export default function Layout({ children }) {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
-  console.log(location.pathname.substring(1))
+  // console.log(location.pathname.substring(1));
 
   const menuItems = [
     {
@@ -103,7 +104,6 @@ export default function Layout({ children }) {
         <Toolbar>
           <Typography variant="h3">
             <Avatar alt="Remy Sharp" src={avatar} className={classes.large} />
-
           </Typography>
         </Toolbar>
       </AppBar>
@@ -123,12 +123,16 @@ export default function Layout({ children }) {
 
         {/* links/list section */}
         <List>
-          {menuItems.map((item) => (
+          {menuItems.map((item,index) => (
             <ListItem
               button
-              key={item.text}
+              key={index}
               onClick={() => history.push(item.path)}
-              className={location.pathname.substring(1) === item.path.substring(1) ? classes.active : classes.link}
+              className={
+                location.pathname.substring(1) === item.path.substring(1)
+                  ? classes.active
+                  : classes.link
+              }
             >
               <ListItemText className={classes.text} primary={item.text} />
               <ListItemIcon>{item.icon}</ListItemIcon>
